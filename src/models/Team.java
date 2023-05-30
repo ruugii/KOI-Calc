@@ -6,7 +6,7 @@ public class Team {
     private String name;
     private int win;
     private int losses;
-    private int top, top1, top2, top3, top4, top5, top6 = 0;
+    private int top, top1, top2, top3, top4, top5, top6, top7, top8, top9, top10 = 0;
 
     public Team(String name, int win, int losses) {
         this.name = name;
@@ -81,6 +81,26 @@ public class Team {
         top();
     }
 
+    public void addTop7() {
+        this.top7 ++;
+        top();
+    }
+
+    public void addTop8() {
+        this.top8 ++;
+        top();
+    }
+
+    public void addTop9() {
+        this.top9 ++;
+        top();
+    }
+
+    public void addTop10() {
+        this.top10 ++;
+        top();
+    }
+
     @Override
     public String toString() {
         final DecimalFormat df = new DecimalFormat("00.00");
@@ -90,6 +110,10 @@ public class Team {
         String top4 = (df.format(((double) this.top4 / this.top) * 100));
         String top5 = (df.format(((double) this.top5 / this.top) * 100));
         String top6 = (df.format(((double) this.top6 / this.top) * 100));
+        String top7 = (df.format(((double) this.top7 / this.top) * 100));
+        String top8 = (df.format(((double) this.top8 / this.top) * 100));
+        String top9 = (df.format(((double) this.top9 / this.top) * 100));
+        String top10 = (df.format(((double) this.top10 / this.top) * 100));
 
         return "\t" +
                 "Top 1: " + top1 +"%\n\t" +
@@ -97,6 +121,10 @@ public class Team {
                 "Top 3: " + top3 +"%\n\t" +
                 "Top 4: " + top4 +"%\n\t" +
                 "Top 5: " + top5 +"%\n\t" +
-                "Top 6: " + top6 +"%\n\t" ;
+                "Top 6: " + top6 +"%\n\t" +
+                "Top 7: " + top7 +"%\n\t" +
+                "Top 8: " + top8 +"%\n\t" +
+                "Top 9: " + top9 +"%\n\t" +
+                "Top 10: " + top10 +"%\n\t";
     }
 }
