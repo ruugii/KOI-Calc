@@ -1,5 +1,6 @@
 package com.company;
 
+import models.Competition;
 import models.Match;
 import models.Team;
 
@@ -10,20 +11,13 @@ import java.util.Scanner;
 public class Main {
 
     static int total = 0;
+    static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
         final String menu = "De que competicion quieres hacer la prueba?\n\t1.- VCT\n\t2.- Superliga\n\t3.- LEC\n\t4.- Salir";
-        Scanner input = new Scanner(System.in);
         int option = 0;
         do {
-            System.out.println(menu);
-            boolean isInt = input.hasNextInt();
-
-            if (isInt) {
-                option = input.nextInt();
-            } else {
-                option = 0;
-            }
+            option = readInt(menu, 1, 4);
             
             switch (option) {
                 case 1:
@@ -31,10 +25,11 @@ public class Main {
                     break;
                 case 2:
                     getSL();
-                    System.out.println("saliendo...");
                     break;
                 case 3:
                     getLEC();
+                    break;
+                case 4:
                     System.out.println("saliendo...");
                     break;
                 default:
@@ -42,25 +37,44 @@ public class Main {
                     break;
             }
         } while (option != 4);
-
-
     }
 
-    public static void getVCT() {
-        ArrayList<Team> teams = new ArrayList<>();
-        ArrayList<String> pendingMatches = new ArrayList<>();
-        ArrayList<Match> pendingMatchesList = new ArrayList<>();
-        Team fnatic = new Team("FNATIC", 4, 0);
-        Team futEsports = new Team("FUT Esports", 3, 1);
-        Team teamVitality = new Team("Team Vitality", 3, 1);
-        Team navi = new Team("NAVI", 3, 1);
-        Team teamLiquid = new Team("Team Liquid", 2, 2);
-        Team giants = new Team("Giants", 2, 2);
-        Team teamHeretics = new Team("Team Heretics", 1, 3);
-        Team koi = new Team("KOI", 1, 3);
-        Team karmineCorp = new Team("Karmine Corp", 1, 3);
-        Team bblEsports = new Team("BBL Esports", 0, 4);
+    private static void getVCT() {
+        final String menu = "De que split quieres ver la informacion?\n\t1.- 2023\n\t2.- 2024\n\t3.- Salir";
+        int option = 0;
+        do {
+            option = readInt(menu, 1, 3);
 
+            switch (option) {
+                case 1:
+                    getVCT2023();
+                    break;
+                case 2:
+                    getVCT2024();
+                    break;
+                case 3:
+                    System.out.println("saliendo...");
+                    break;
+                default:
+                    System.out.println("opcion no valida");
+                    break;
+            }
+        } while (option != 3);
+    }
+
+    private static void getVCT2023() {
+        ArrayList<Team> teams = new ArrayList<>();
+        Team fnatic = new Team("FNATIC", 9, 0);
+        Team navi = new Team("NAVI", 7,2);
+        Team teamLiquid = new Team("Team Liquid", 6,3);
+        Team giants = new Team("Giants", 5,4);
+        Team futEsports = new Team("FUT Esports", 5,4);
+        Team teamVitality = new Team("Team Vitality", 4,5);
+        Team bblEsports = new Team("BBL Esports", 3,6);
+        Team teamHeretics = new Team("Team Heretics", 2,7);
+        Team koi = new Team("KOI", 2,7);
+        Team karmineCorp = new Team("Karmine Corp", 2,7);
+        
         teams.add(fnatic);
         teams.add(futEsports);
         teams.add(teamVitality);
@@ -71,39 +85,561 @@ public class Main {
         teams.add(koi);
         teams.add(karmineCorp);
         teams.add(bblEsports);
+        
+        ArrayList<Match> pendingMatchesList = new ArrayList<>();
+        System.out.println("VCT SPLIT 1");
+        Competition VCT = new Competition("VCT SPLIT 1", teams, pendingMatchesList);
+        VCT.classification();
+    }
 
-        pendingMatchesList.add(new Match(teamLiquid, teamHeretics, 1));
-        pendingMatchesList.add(new Match(giants, futEsports, 1));
-        pendingMatchesList.add(new Match(navi, karmineCorp, 1));
-        pendingMatchesList.add(new Match(teamVitality, bblEsports, 2));
-        pendingMatchesList.add(new Match(teamLiquid, giants, 1));
-        pendingMatchesList.add(new Match(teamHeretics, bblEsports, 2));
-        pendingMatchesList.add(new Match(koi, karmineCorp, 2));
-        pendingMatchesList.add(new Match(futEsports, fnatic, 2));
-        pendingMatchesList.add(new Match(teamVitality, navi,2));
-        pendingMatchesList.add(new Match(teamVitality, fnatic,2));
-        pendingMatchesList.add(new Match(karmineCorp, futEsports, 2));
-        pendingMatchesList.add(new Match(bblEsports, koi, 1));
-        pendingMatchesList.add(new Match(teamLiquid, navi, 2));
-        pendingMatchesList.add(new Match(teamHeretics, giants, 1));
-        pendingMatchesList.add(new Match(koi, fnatic, 2));
-        pendingMatchesList.add(new Match(teamVitality, giants, 2));
-        pendingMatchesList.add(new Match(navi, futEsports, 1));
-        pendingMatchesList.add(new Match(karmineCorp, fnatic, 2));
-        pendingMatchesList.add(new Match(teamLiquid, bblEsports, 1));
-        pendingMatchesList.add(new Match(teamHeretics, koi, 2));
-        pendingMatchesList.add(new Match(navi, fnatic, 2));
-        pendingMatchesList.add(new Match(teamVitality, teamHeretics, 1));
-        pendingMatchesList.add(new Match(karmineCorp, giants, 2));
-        pendingMatchesList.add(new Match(teamLiquid, koi, 1));
-        pendingMatchesList.add(new Match(futEsports, bblEsports, 1));
+    private static void getVCT2024() {
+        ArrayList<Team> teams = new ArrayList<>();
+        Team fnatic = new Team("FNATIC", 0, 0);
+        Team navi = new Team("NAVI", 0,0);
+        Team teamLiquid = new Team("Team Liquid", 0,0);
+        Team giants = new Team("Giants", 0,0);
+        Team futEsports = new Team("FUT Esports", 0,0);
+        Team teamVitality = new Team("Team Vitality", 0,0);
+        Team bblEsports = new Team("BBL Esports", 0,0);
+        Team teamHeretics = new Team("Team Heretics", 0,0);
+        Team koi = new Team("KOI", 0,0);
+        Team karmineCorp = new Team("Karmine Corp", 0,0);
+        Team ascTeam = new Team("Ascension Team", 0,0);
+        
+        teams.add(fnatic);
+        teams.add(futEsports);
+        teams.add(teamVitality);
+        teams.add(navi);
+        teams.add(teamLiquid);
+        teams.add(giants);
+        teams.add(teamHeretics);
+        teams.add(koi);
+        teams.add(karmineCorp);
+        teams.add(bblEsports);
+        teams.add(ascTeam);
+        
+        ArrayList<Match> pendingMatchesList = new ArrayList<>();
+        // KOI matches
+        pendingMatchesList.add(new Match(koi, ascTeam));
+        pendingMatchesList.add(new Match(koi, bblEsports));
+        pendingMatchesList.add(new Match(koi, karmineCorp));
+        pendingMatchesList.add(new Match(koi, teamHeretics));
+        pendingMatchesList.add(new Match(koi, teamVitality));
+        pendingMatchesList.add(new Match(koi, futEsports));
+        pendingMatchesList.add(new Match(koi, giants));
+        pendingMatchesList.add(new Match(koi, teamLiquid));
+        pendingMatchesList.add(new Match(koi, navi));
+        pendingMatchesList.add(new Match(koi, fnatic));
 
-        simulateMatches(teams, pendingMatches ,0, "VCT");
-        for (int i = 0; i < teams.size(); i++) {
-            final DecimalFormat df = new DecimalFormat("00.00");
-            System.out.println(teams.get(i).name() + ": " + df.format(((double) teams.get(i).GetTop() / total) * 100) + "%");
-            System.out.println(teams.get(i));
+        // ASC matches
+        pendingMatchesList.add(new Match(ascTeam, bblEsports));
+        pendingMatchesList.add(new Match(ascTeam, karmineCorp));
+        pendingMatchesList.add(new Match(ascTeam, teamHeretics));
+        pendingMatchesList.add(new Match(ascTeam, teamVitality));
+        pendingMatchesList.add(new Match(ascTeam, futEsports));
+        pendingMatchesList.add(new Match(ascTeam, giants));
+        pendingMatchesList.add(new Match(ascTeam, teamLiquid));
+        pendingMatchesList.add(new Match(ascTeam, navi));
+        pendingMatchesList.add(new Match(ascTeam, fnatic));
+
+        // BBL matches
+        pendingMatchesList.add(new Match(bblEsports, karmineCorp));
+        pendingMatchesList.add(new Match(bblEsports, teamHeretics));
+        pendingMatchesList.add(new Match(bblEsports, teamVitality));
+        pendingMatchesList.add(new Match(bblEsports, futEsports));
+        pendingMatchesList.add(new Match(bblEsports, giants));
+        pendingMatchesList.add(new Match(bblEsports, teamLiquid));
+        pendingMatchesList.add(new Match(bblEsports, navi));
+        pendingMatchesList.add(new Match(bblEsports, fnatic));
+
+        // KAR matches
+        pendingMatchesList.add(new Match(karmineCorp, teamHeretics));
+        pendingMatchesList.add(new Match(karmineCorp, teamVitality));
+        pendingMatchesList.add(new Match(karmineCorp, futEsports));
+        pendingMatchesList.add(new Match(karmineCorp, giants));
+        pendingMatchesList.add(new Match(karmineCorp, teamLiquid));
+        pendingMatchesList.add(new Match(karmineCorp, navi));
+        pendingMatchesList.add(new Match(karmineCorp, fnatic));
+
+        // HER matches
+        pendingMatchesList.add(new Match(teamHeretics, teamVitality));
+        pendingMatchesList.add(new Match(teamHeretics, futEsports));
+        pendingMatchesList.add(new Match(teamHeretics, giants));
+        pendingMatchesList.add(new Match(teamHeretics, teamLiquid));
+        pendingMatchesList.add(new Match(teamHeretics, navi));
+        pendingMatchesList.add(new Match(teamHeretics, fnatic));
+
+        // VIT matches
+        pendingMatchesList.add(new Match(teamVitality, futEsports));
+        pendingMatchesList.add(new Match(teamVitality, giants));
+        pendingMatchesList.add(new Match(teamVitality, teamLiquid));
+        pendingMatchesList.add(new Match(teamVitality, navi));
+        pendingMatchesList.add(new Match(teamVitality, fnatic));
+
+        // FUT matches
+        pendingMatchesList.add(new Match(futEsports, giants));
+        pendingMatchesList.add(new Match(futEsports, teamLiquid));
+        pendingMatchesList.add(new Match(futEsports, navi));
+        pendingMatchesList.add(new Match(futEsports, fnatic));
+
+        // GIA matches
+        pendingMatchesList.add(new Match(giants, teamLiquid));
+        pendingMatchesList.add(new Match(giants, navi));
+        pendingMatchesList.add(new Match(giants, fnatic));
+
+        // TL matches
+        pendingMatchesList.add(new Match(teamLiquid, navi));
+        pendingMatchesList.add(new Match(teamLiquid, fnatic));
+
+        // NAVI matches
+        pendingMatchesList.add(new Match(navi, fnatic));
+
+        System.out.println("VCT SPLIT 2");
+        Competition VCT = new Competition("VCT", teams, pendingMatchesList);
+
+        int option = 0;
+        do {
+            final String menu = "Que quieres hacer?\n\t1.- Simular partidos\n\t2.- Ver todos los partidos\n\t3.- Ver partidos pendientes\n\t4.- Ver Resultados\n\t5.- Ver clasificacion\n\t6.- Salir";
+            option = readInt(menu, 1, 6);
+
+            switch (option) {
+                case 1:
+                    simulateMatches(VCT.getTeams(), VCT.getPendingMatchesToString(), 0, VCT.getName());
+                    for (int i = 0; i < teams.size(); i++) {
+                        final DecimalFormat df = new DecimalFormat("00.00");
+                        System.out.println(teams.get(i).name() + ": " + df.format(((double) teams.get(i).GetTop() / total) * 100) + "%");
+                        System.out.println(teams.get(i));
+                    }
+                    break;
+                case 2:
+                    VCT.seeMatches();
+                    break;
+                case 3:
+                    VCT.seePendingMatches();
+                    break;
+                case 4:
+                    VCT.seeResults();
+                    break;
+                case 5:
+                    VCT.classification();
+                    break;
+                case 6:
+                    System.out.println("saliendo...");
+                    break;
+                default:
+                    System.out.println("opcion no valida");
+                    break;
+            }
+        } while (option != 6);
+    }
+
+    private static void getSL() {
+        final String menu = "De que split quieres ver la informacion?\n\t1.- 2023 Summer\n\t2.- Salir";
+        int option = 0;
+        do {
+            option = readInt(menu, 1, 2);
+
+            switch (option) {
+                case 1:
+                    getSL2023Summer();
+                    break;
+                case 2:
+                    System.out.println("saliendo...");
+                    break;
+                default:
+                    System.out.println("opcion no valida");
+                    break;
+            }
+        } while (option != 2);
+    }
+
+    private static void getSL2023Summer() {
+        ArrayList<Team> teams = new ArrayList<>();
+        ArrayList<Match> pendingMatchesList = new ArrayList<>();
+        Team Bisons = new Team("Bisons", 0, 0);
+        Team KOI = new Team("KOI", 0, 0);
+        Team Guasones = new Team("Guasones", 0, 0);
+        Team FCB = new Team("FCB", 0, 0);
+        Team Rebels = new Team("Rebels", 0, 0);
+        Team UCAM = new Team("UCAM", 0, 0);
+        Team Heretics = new Team("Heretics", 0, 0);
+        Team Giants = new Team("Giants", 0, 0);
+        Team Riders = new Team("Riders", 0, 0);
+        Team Fnatic = new Team("Fnatic", 0, 0);
+        
+        teams.add(Giants);
+        teams.add(Riders);
+        teams.add(UCAM);
+        teams.add(FCB);
+        teams.add(Fnatic);
+        teams.add(Heretics);
+        teams.add(KOI);
+        teams.add(Bisons);
+        teams.add(Guasones);
+        teams.add(Rebels);
+        
+        // FINISHED MATCHES
+        // JORNADA 1
+        {
+            pendingMatchesList.add(new Match(KOI, Bisons, 1));
+            pendingMatchesList.add(new Match(Guasones, FCB, 2));
+            pendingMatchesList.add(new Match(Rebels, UCAM, 1));
+            pendingMatchesList.add(new Match(Heretics, Riders, 1));
+            pendingMatchesList.add(new Match(Giants, Fnatic, 1));
         }
+        
+        
+        // JORNADA 2
+        {
+            pendingMatchesList.add(new Match(KOI, Guasones, 1));
+            pendingMatchesList.add(new Match(Bisons, Rebels, 1));
+            pendingMatchesList.add(new Match(UCAM, Giants, 2));
+            pendingMatchesList.add(new Match(FCB, Heretics, 2));
+            pendingMatchesList.add(new Match(Riders, Fnatic, 1));
+        }
+        
+        // JORNADA 3
+        {
+            pendingMatchesList.add(new Match(Guasones, Heretics, 1));
+            pendingMatchesList.add(new Match(FCB, Fnatic, 1));
+            pendingMatchesList.add(new Match(UCAM, Riders, 2));
+            pendingMatchesList.add(new Match(Bisons, Giants, 1));
+            pendingMatchesList.add(new Match(KOI, Rebels, 1));
+        }
+
+        // JORNADA 4
+        {
+            pendingMatchesList.add(new Match(FCB, UCAM, 1));
+            pendingMatchesList.add(new Match(Guasones, Fnatic, 2));
+            pendingMatchesList.add(new Match(Rebels, Giants, 1));
+            pendingMatchesList.add(new Match(KOI, Heretics, 2));
+            pendingMatchesList.add(new Match(Bisons, Riders, 1));
+        }
+
+        // JORNADA 5
+        {
+            pendingMatchesList.add(new Match(Heretics, Fnatic, 1));
+            pendingMatchesList.add(new Match(Guasones, UCAM, 2));
+            pendingMatchesList.add(new Match(Rebels, Riders, 2));
+            pendingMatchesList.add(new Match(KOI, Giants, 2));
+            pendingMatchesList.add(new Match(Bisons, FCB, 1));
+        }
+
+        // JORNADA 6
+        {
+            pendingMatchesList.add(new Match(UCAM, Heretics, 1));
+            pendingMatchesList.add(new Match(Bisons, Guasones, 1));
+            pendingMatchesList.add(new Match(KOI, Fnatic, 1));
+            pendingMatchesList.add(new Match(Giants, Riders, 2));
+            pendingMatchesList.add(new Match(FCB, Rebels, 2));
+        }
+
+        // JORNADA 7
+        {
+            pendingMatchesList.add(new Match(UCAM, Fnatic, 1));
+            pendingMatchesList.add(new Match(Guasones, Rebels,2));
+            pendingMatchesList.add(new Match(Bisons, Heretics, 1));
+            pendingMatchesList.add(new Match(FCB, Giants, 2));
+            pendingMatchesList.add(new Match(KOI, Riders, 2));
+        }
+
+        // JORNADA 8
+        {
+            pendingMatchesList.add(new Match(Bisons, Fnatic, 1));
+            pendingMatchesList.add(new Match(Guasones, Giants, 1));
+            pendingMatchesList.add(new Match(KOI, UCAM, 1));
+            pendingMatchesList.add(new Match(Rebels, Heretics, 2));
+            pendingMatchesList.add(new Match(FCB, Riders, 1));
+        }
+
+        // JORNADA 9
+        {
+            pendingMatchesList.add(new Match(Bisons, UCAM, "22/06/2023", "18:00", 1));
+            pendingMatchesList.add(new Match(Rebels, Fnatic, "22/06/2023", "19:00", 1));
+            pendingMatchesList.add(new Match(Guasones, Riders, "22/06/2023", "20:00", 2));
+            pendingMatchesList.add(new Match(KOI, FCB, "22/06/2023", "21:00", 1));
+            pendingMatchesList.add(new Match(Heretics, Giants, "22/06/2023", "22:00", 1));
+        }
+
+        // JORNADA 10
+        {
+            pendingMatchesList.add(new Match(Rebels, UCAM, "27/06/2023", "18:00", 2));
+            pendingMatchesList.add(new Match(Giants, Fnatic, "27/06/2023", "19:00", 1));
+            pendingMatchesList.add(new Match(Guasones, FCB, "27/06/2023", "20:00", 2));
+            pendingMatchesList.add(new Match(KOI, Bisons, "27/06/2023", "21:00", 2));
+            pendingMatchesList.add(new Match(Heretics, Riders, "27/06/2023", "22:00", 2));
+        }
+
+        // JORNADA 11
+        {
+            pendingMatchesList.add(new Match(Riders, Fnatic, "29/06/2023", "18:00", 2));
+            pendingMatchesList.add(new Match(KOI, Guasones, "29/06/2023", "19:00", 1));
+            pendingMatchesList.add(new Match(UCAM, Giants, "29/06/2023", "20:00", 2));
+            pendingMatchesList.add(new Match(Bisons, Rebels, "29/06/2023", "21:00", 1));
+            pendingMatchesList.add(new Match(FCB, Heretics, "29/06/2023", "22:00", 2));
+        }
+
+        // JORNADA 12
+        {
+
+        }
+
+        // NEXT MATCHES
+        // PENDING
+        pendingMatchesList.add(new Match(FCB, Fnatic, "04/07/2023", "18:00"));
+        pendingMatchesList.add(new Match(Guasones, Heretics, "04/07/2023", "19:00"));
+        pendingMatchesList.add(new Match(KOI, Rebels, "04/07/2023", "20:00"));
+        pendingMatchesList.add(new Match(Bisons, Giants, "04/07/2023", "21:00"));
+        pendingMatchesList.add(new Match(UCAM, Riders, "04/07/2023", "22:00"));
+
+        // KOI matches
+        pendingMatchesList.add(new Match(KOI, FCB));
+        pendingMatchesList.add(new Match(KOI, UCAM));
+        pendingMatchesList.add(new Match(KOI, Heretics));
+        pendingMatchesList.add(new Match(KOI, Giants));
+        pendingMatchesList.add(new Match(KOI, Riders));
+        pendingMatchesList.add(new Match(KOI, Fnatic));
+
+        // Bisons matches
+        pendingMatchesList.add(new Match(Bisons, Guasones));
+        pendingMatchesList.add(new Match(Bisons, FCB));
+        pendingMatchesList.add(new Match(Bisons, UCAM));
+        pendingMatchesList.add(new Match(Bisons, Heretics));
+        pendingMatchesList.add(new Match(Bisons, Riders));
+        pendingMatchesList.add(new Match(Bisons, Fnatic));
+
+        // Guasones matches
+        pendingMatchesList.add(new Match(Guasones, Rebels));
+        pendingMatchesList.add(new Match(Guasones, UCAM));
+        pendingMatchesList.add(new Match(Guasones, Giants));
+        pendingMatchesList.add(new Match(Guasones, Riders));
+        pendingMatchesList.add(new Match(Guasones, Fnatic));
+
+        // FCB matches
+        pendingMatchesList.add(new Match(FCB, Rebels));
+        pendingMatchesList.add(new Match(FCB, UCAM));
+        pendingMatchesList.add(new Match(FCB, Giants));
+        pendingMatchesList.add(new Match(FCB, Riders));
+
+        // Rebels matches
+        pendingMatchesList.add(new Match(Rebels, Heretics));
+        pendingMatchesList.add(new Match(Rebels, Giants));
+        pendingMatchesList.add(new Match(Rebels, Riders));
+        pendingMatchesList.add(new Match(Rebels, Fnatic));
+
+        // UCAM matches
+        pendingMatchesList.add(new Match(UCAM, Heretics));
+        pendingMatchesList.add(new Match(UCAM, Fnatic));
+
+        // Heretics matches
+        pendingMatchesList.add(new Match(Heretics, Giants));
+        pendingMatchesList.add(new Match(Heretics, Fnatic));
+
+        // Giants matches
+        pendingMatchesList.add(new Match(Giants, Riders));
+
+        Competition SL = new Competition("SUPERLIGA", teams, pendingMatchesList);
+        int option = 0;
+        final String menu = "Que quieres hacer?\n\t1.- Simular partidos\n\t2.- Ver todos los partidos\n\t3.- Ver partidos pendientes\n\t4.- Ver Resultados\n\t5.- Ver clasificacion\n\t6.- Salir";
+        do {
+            option = readInt(menu, 1, 6);
+            switch (option) {
+                case 1:
+                    simulateMatches(SL.getTeams(), SL.getPendingMatchesToString(), 0, SL.getName());
+                    for (int i = 0; i < teams.size(); i++) {
+                        final DecimalFormat df = new DecimalFormat("00.00");
+                        System.out.println(teams.get(i).name() + ": " + df.format(((double) teams.get(i).GetTop() / total) * 100) + "%");
+                        System.out.println(teams.get(i));
+                    }
+                    break;
+                case 2:
+                    SL.seeMatches();
+                    break;
+                case 3:
+                    SL.seePendingMatches();
+                    break;
+                case 4:
+                    SL.seeResults();
+                    break;
+                case 5:
+                    SL.classification();
+                    break;
+                case 6:
+                    System.out.println("saliendo...");
+                    break;
+                default:
+                    System.out.println("opcion no valida");
+                    break;
+            }
+        } while (option != 6);
+    }
+
+    private static void getLEC() {
+        final String menu = "De que split quieres ver la informacion?\n\t1.- 2023 Summer\n\t2.- Salir";
+        int option = 0;
+        do {
+            System.out.println(menu);
+            boolean isInt = input.hasNextInt();
+
+            if (isInt) {
+                option = input.nextInt();
+            } else {
+                option = 0;
+            }
+
+            switch (option) {
+                case 1:
+                    getLEC2023Summer();
+                    break;
+                case 2:
+                    System.out.println("saliendo...");
+                    break;
+                default:
+                    System.out.println("opcion no valida");
+                    break;
+            }
+        } while (option != 2);
+    }
+
+    private static void getLEC2023Summer() {
+        ArrayList <Team> teams = new ArrayList<>();
+        ArrayList <Match> pendingMatchesList = new ArrayList<>();
+        Team MAD = new Team("MAD Lions", 0, 0);
+        Team VIT = new Team("Vitality", 0, 0);
+        Team HER = new Team("Heretics", 0, 0);
+        Team SK = new Team("SK Gaming", 0, 0);
+        Team KOI = new Team("KOI", 0, 0);
+        Team EXC = new Team("Excel", 0, 0);
+        Team G2 = new Team("G2 Esports", 0, 0);
+        Team BDS = new Team("BDS", 0, 0);
+        Team FNC = new Team("Fnatic", 0, 0);
+        Team AST = new Team("Astralis", 0, 0);
+
+        teams.add(MAD);
+        teams.add(VIT);
+        teams.add(HER);
+        teams.add(SK);
+        teams.add(KOI);
+        teams.add(EXC);
+        teams.add(G2);
+        teams.add(BDS);
+        teams.add(FNC);
+        teams.add(AST);
+        // PLAYED MATCHES
+        // JORNADA 1
+        pendingMatchesList.add(new Match(MAD, VIT, "17/06/2023", "18:00", 1));
+        pendingMatchesList.add(new Match(HER, SK, "17/06/2023", "19:00", 1));
+        pendingMatchesList.add(new Match(KOI, EXC, "17/06/2023", "20:00", 1));
+        pendingMatchesList.add(new Match(G2, BDS, "17/06/2023", "21:00", 1));
+        pendingMatchesList.add(new Match(FNC, AST, "17/06/2023", "22:00", 1));
+
+        // JORNADA 2
+        pendingMatchesList.add(new Match(VIT, SK, "18/06/2023", "18:00", 1));
+        pendingMatchesList.add(new Match(EXC, FNC, "18/06/2023", "19:00", 2));
+        pendingMatchesList.add(new Match(MAD, G2, "18/06/2023", "20:00", 1));
+        pendingMatchesList.add(new Match(KOI, BDS, "18/06/2023", "21:00", 2));
+        pendingMatchesList.add(new Match(AST, HER, "18/06/2023", "22:00", 2));
+
+        // JORNADA 3
+        pendingMatchesList.add(new Match(EXC, SK, "19/06/2023", "18:00", 2));
+        pendingMatchesList.add(new Match(BDS, AST, "19/06/2023", "19:00", 2));
+        pendingMatchesList.add(new Match(MAD, KOI, "19/06/2023", "20:00", 1));
+        pendingMatchesList.add(new Match(FNC, G2, "19/06/2023", "21:00", 2));
+        pendingMatchesList.add(new Match(VIT, HER, "19/06/2023", "22:00", 2));
+
+        // JORNADA 4
+        pendingMatchesList.add(new Match(BDS, SK, "24/06/2023", "18:00", 1));
+        pendingMatchesList.add(new Match(EXC, HER, "24/06/2023", "19:00", 1));
+        pendingMatchesList.add(new Match(KOI, FNC, "24/06/2023", "20:00", 2));
+        pendingMatchesList.add(new Match(VIT, G2, "24/06/2023", "21:00", 2));
+        pendingMatchesList.add(new Match(MAD, AST, "24/06/2023", "22:00", 1));
+
+        // JORNADA 5
+        pendingMatchesList.add(new Match(EXC, BDS, "25/06/2023", "18:00", 1));
+        pendingMatchesList.add(new Match(AST, VIT, "25/06/2023", "19:00", 1));
+        pendingMatchesList.add(new Match(KOI, HER, "25/06/2023", "20:00", 1));
+        pendingMatchesList.add(new Match(SK, G2, "25/06/2023", "21:00", 2));
+        pendingMatchesList.add(new Match(MAD, FNC, "25/06/2023", "22:00", 2));
+
+        // JORNADA 6
+        pendingMatchesList.add(new Match(BDS, HER, "26/06/2023", "18:00", 2));
+        pendingMatchesList.add(new Match(MAD, EXC, "26/06/2023", "19:00", 2));
+        pendingMatchesList.add(new Match(AST, G2, "26/06/2023", "20:00", 2));
+        pendingMatchesList.add(new Match(KOI, SK, "26/06/2023", "21:00", 2));
+        pendingMatchesList.add(new Match(FNC, VIT, "26/06/2023", "22:00", 1));
+
+        // JORNADA 7
+        pendingMatchesList.add(new Match(AST, SK, "01/07/2023", "18:00"));
+        pendingMatchesList.add(new Match(KOI, VIT, "01/07/2023", "19:00"));
+        pendingMatchesList.add(new Match(EXC, G2, "01/07/2023", "20:00"));
+        pendingMatchesList.add(new Match(BDS, FNC, "01/07/2023", "21:00"));
+        pendingMatchesList.add(new Match(MAD, HER, "01/07/2023", "22:00"));
+
+        // PARTIDOS KOI
+        pendingMatchesList.add(new Match(KOI, AST));
+        pendingMatchesList.add(new Match(KOI, G2));
+        
+        // PARTIDOS MAD
+        pendingMatchesList.add(new Match(MAD, BDS));
+        pendingMatchesList.add(new Match(MAD, SK));
+        
+        // PARTIDOS EXC
+        pendingMatchesList.add(new Match(EXC, AST));
+        pendingMatchesList.add(new Match(EXC, VIT));
+
+        // PARTIDOS BDS
+        pendingMatchesList.add(new Match(BDS, VIT));
+
+
+        // PARTIDOS FNC
+        pendingMatchesList.add(new Match(FNC, HER));
+        pendingMatchesList.add(new Match(FNC, SK));
+
+        // PARTIDOS HER
+        pendingMatchesList.add(new Match(HER, G2));
+
+        Competition LEC = new Competition("LEC", teams, pendingMatchesList);
+        int option = 0;
+
+        do {
+            System.out.println("Que quieres hacer?\n\t1.- Simular partidos\n\t2.- Ver todos los partidos\n\t3.- Ver partidos pendientes\n\t4.- Ver Resultados\n\t5.- Ver clasificacion\n\t6.- Salir");
+            boolean isInt = input.hasNextInt();
+
+            if (isInt) {
+                option = input.nextInt();
+            } else {
+                option = 0;
+            }
+
+            switch (option) {
+                case 1:
+                    simulateMatches(teams, LEC.getPendingMatchesToString() ,0, "LEC");
+                    for (int i = 0; i < teams.size(); i++) {
+                        final DecimalFormat df = new DecimalFormat("00.00");
+                        System.out.println(teams.get(i).name() + ": " + df.format(((double) teams.get(i).GetTop() / total) * 100) + "%");
+                        System.out.println(teams.get(i));
+                    }
+                    break;
+                case 2:
+                    LEC.seeMatches();
+                    break;
+                case 3:
+                    LEC.seePendingMatches();
+                    break;
+                case 4:
+                    LEC.seeResults();
+                    break;
+                case 5:
+                    LEC.classification();
+                    break;
+                case 6:
+                    System.out.println("saliendo...");
+                    break;
+                default:
+                    System.out.println("opcion no valida");
+                    break;
+            }
+        } while (option != 6);
     }
 
     private static void simulateMatches(ArrayList<Team> teams, ArrayList<String> pendingMatches, int currentMatch, String comp) {
@@ -117,12 +653,8 @@ public class Main {
         String[] teamNames = match.split(" - ");
         System.out.println(teamNames[0]);
         System.out.println(teamNames[1]);
-        System.out.println(findTeam(teams, teamNames[1]));
         Team team1 = findTeam(teams, teamNames[0]);
         Team team2 = findTeam(teams, teamNames[1]);
-
-        System.out.println(team1);
-        System.out.println(team2);
 
         // Simulate team1 wins
         team1.addWin();
@@ -153,6 +685,7 @@ public class Main {
         });
         final DecimalFormat df = new DecimalFormat("00.00");
         System.out.println(df.format((double) total / Math.pow(2, matches.size()) * 100) + "%");
+        System.out.println(total/ Math.pow(2, matches.size()) * 100 + "%");
         System.out.println(total + "/" + Math.pow(2, matches.size()));
         System.out.println("Standings:");
         int maxPosition = 0;
@@ -162,6 +695,8 @@ public class Main {
             maxPosition = 6;
         } else if (competition.equalsIgnoreCase("VCT")) {
             maxPosition = 6;
+        } else {
+            maxPosition = 10;
         }
         for (int i = 0; i < maxPosition; i++) {
             Team team = teams.get(i);
@@ -220,374 +755,24 @@ public class Main {
         return null;
     }
 
-    public static void getSL() {
-        ArrayList<Team> teams = new ArrayList<>();
-        ArrayList<String> pendingMatches = new ArrayList<>();
-        ArrayList<Match> pendingMatchesList = new ArrayList<>();
-        Team Bisons = new Team("Bisons", 0, 0);
-        Team KOI = new Team("KOI", 0, 0);
-        Team Guasones = new Team("Guasones", 0, 0);
-        Team FCB = new Team("FCB", 0, 0);
-        Team Rebels = new Team("Rebels", 0, 0);
-        Team UCAM = new Team("UCAM", 0, 0);
-        Team Heretics = new Team("Heretics", 0, 0);
-        Team Giants = new Team("Giants", 0, 0);
-        Team Riders = new Team("Riders", 0, 0);
-        Team Fnatic = new Team("Fnatic", 0, 0);
-        
-        teams.add(Giants);
-        teams.add(Riders);
-        teams.add(UCAM);
-        teams.add(FCB);
-        teams.add(Fnatic);
-        teams.add(Heretics);
-        teams.add(KOI);
-        teams.add(Bisons);
-        teams.add(Guasones);
-        teams.add(Rebels);
-        
-        // FINISHED MATCHES
-        // JORNADA 1
-        pendingMatchesList.add(new Match(KOI, Bisons, 1));
-        pendingMatchesList.add(new Match(Guasones, FCB, 2));
-        pendingMatchesList.add(new Match(Rebels, UCAM, 1));
-        pendingMatchesList.add(new Match(Heretics, Riders, 1));
-        pendingMatchesList.add(new Match(Giants, Fnatic, 1));
-        
-        // JORNADA 2
-        pendingMatchesList.add(new Match(KOI, Guasones, 1));
-        pendingMatchesList.add(new Match(Bisons, Rebels, 1));
-        pendingMatchesList.add(new Match(UCAM, Giants, 2));
-        
-        // ON GOING MATCHES
-        pendingMatchesList.add(new Match(FCB, Heretics));
-        
-        // KOI matches
-        pendingMatchesList.add(new Match(KOI, FCB));
-        pendingMatches.add("KOI - FCB");
-        pendingMatchesList.add(new Match(KOI, Rebels));
-        pendingMatches.add("KOI - Rebels");
-        pendingMatchesList.add(new Match(KOI, UCAM));
-        pendingMatches.add("KOI - UCAM");
-        pendingMatchesList.add(new Match(KOI, Heretics));
-        pendingMatches.add("KOI - Heretics");
-        pendingMatchesList.add(new Match(KOI, Giants));
-        pendingMatches.add("KOI - Giants");
-        pendingMatchesList.add(new Match(KOI, Riders));
-        pendingMatches.add("KOI - Riders");
-        pendingMatchesList.add(new Match(KOI, Fnatic));
-        pendingMatches.add("KOI - Fnatic");
-        pendingMatchesList.add(new Match(KOI, Bisons));
-        pendingMatches.add("KOI - Bisons");
-        pendingMatchesList.add(new Match(KOI, Guasones));
-        pendingMatches.add("KOI - Guasones");
-        pendingMatchesList.add(new Match(KOI, FCB));
-        pendingMatches.add("KOI - FCB");
-        pendingMatchesList.add(new Match(KOI, Rebels));
-        pendingMatches.add("KOI - Rebels");
-        pendingMatchesList.add(new Match(KOI, UCAM));
-        pendingMatches.add("KOI - UCAM");
-        pendingMatchesList.add(new Match(KOI, Heretics));
-        pendingMatches.add("KOI - Heretics");
-        pendingMatchesList.add(new Match(KOI, Giants));
-        pendingMatches.add("KOI - Giants");
-        pendingMatchesList.add(new Match(KOI, Riders));
-        pendingMatches.add("KOI - Riders");
-        pendingMatchesList.add(new Match(KOI, Fnatic));
-        pendingMatches.add("KOI - Fnatic");
-
-        // Bisons matches
-        pendingMatchesList.add(new Match(Bisons, Guasones));
-        pendingMatches.add("Bisons - Guasones");
-        pendingMatchesList.add(new Match(Bisons, FCB));
-        pendingMatches.add("Bisons - FCB");
-        pendingMatchesList.add(new Match(Bisons, UCAM));
-        pendingMatches.add("Bisons - UCAM");
-        pendingMatchesList.add(new Match(Bisons, Heretics));
-        pendingMatches.add("Bisons - Heretics");
-        pendingMatchesList.add(new Match(Bisons, Giants));
-        pendingMatches.add("Bisons - Giants");
-        pendingMatchesList.add(new Match(Bisons, Riders));
-        pendingMatches.add("Bisons - Riders");
-        pendingMatchesList.add(new Match(Bisons, Fnatic));
-        pendingMatches.add("Bisons - Fnatic");
-        pendingMatchesList.add(new Match(Bisons, Guasones));
-        pendingMatches.add("Bisons - Guasones");
-        pendingMatchesList.add(new Match(Bisons, FCB));
-        pendingMatches.add("Bisons - FCB");
-        pendingMatchesList.add(new Match(Bisons, Rebels));
-        pendingMatches.add("Bisons - Rebels");
-        pendingMatchesList.add(new Match(Bisons, UCAM));
-        pendingMatches.add("Bisons - UCAM");
-        pendingMatchesList.add(new Match(Bisons, Heretics));
-        pendingMatches.add("Bisons - Heretics");
-        pendingMatchesList.add(new Match(Bisons, Giants));
-        pendingMatches.add("Bisons - Giants");
-        pendingMatchesList.add(new Match(Bisons, Riders));
-        pendingMatches.add("Bisons - Riders");
-        pendingMatchesList.add(new Match(Bisons, Fnatic));
-        pendingMatches.add("Bisons - Fnatic");
-
-        // Guasones matches
-        pendingMatchesList.add(new Match(Guasones, Rebels));
-        pendingMatches.add("Guasones - Rebels");
-        pendingMatchesList.add(new Match(Guasones, UCAM));
-        pendingMatches.add("Guasones - UCAM");
-        pendingMatchesList.add(new Match(Guasones, Heretics));
-        pendingMatches.add("Guasones - Heretics");
-        pendingMatchesList.add(new Match(Guasones, Giants));
-        pendingMatches.add("Guasones - Giants");
-        pendingMatchesList.add(new Match(Guasones, Riders));
-        pendingMatches.add("Guasones - Riders");
-        pendingMatchesList.add(new Match(Guasones, Fnatic));
-        pendingMatches.add("Guasones - Fnatic");
-        pendingMatchesList.add(new Match(Guasones, FCB));
-        pendingMatches.add("Guasones - FCB");
-        pendingMatchesList.add(new Match(Guasones, Rebels));
-        pendingMatches.add("Guasones - Rebels");
-        pendingMatchesList.add(new Match(Guasones, UCAM));
-        pendingMatches.add("Guasones - UCAM");
-        pendingMatchesList.add(new Match(Guasones, Heretics));
-        pendingMatches.add("Guasones - Heretics");
-        pendingMatchesList.add(new Match(Guasones, Giants));
-        pendingMatches.add("Guasones - Giants");
-        pendingMatchesList.add(new Match(Guasones, Riders));
-        pendingMatches.add("Guasones - Riders");
-        pendingMatchesList.add(new Match(Guasones, Fnatic));
-        pendingMatches.add("Guasones - Fnatic");
-
-        // FCB matches
-        pendingMatchesList.add(new Match(FCB, Rebels));
-        pendingMatches.add("FCB - Rebels");
-        pendingMatchesList.add(new Match(FCB, UCAM));
-        pendingMatches.add("FCB - UCAM");
-        pendingMatchesList.add(new Match(FCB, Giants));
-        pendingMatches.add("FCB - Giants");
-        pendingMatchesList.add(new Match(FCB, Riders));
-        pendingMatches.add("FCB - Riders");
-        pendingMatchesList.add(new Match(FCB, Fnatic));
-        pendingMatches.add("FCB - Fnatic");
-        pendingMatchesList.add(new Match(FCB, Rebels));
-        pendingMatches.add("FCB - Rebels");
-        pendingMatchesList.add(new Match(FCB, UCAM));
-        pendingMatches.add("FCB - UCAM");
-        pendingMatchesList.add(new Match(FCB, Heretics));
-        pendingMatches.add("FCB - Heretics");
-        pendingMatchesList.add(new Match(FCB, Giants));
-        pendingMatches.add("FCB - Giants");
-        pendingMatchesList.add(new Match(FCB, Riders));
-        pendingMatches.add("FCB - Riders");
-        pendingMatchesList.add(new Match(FCB, Fnatic));
-        pendingMatches.add("FCB - Fnatic");
-        
-        // Rebels matches
-        pendingMatchesList.add(new Match(Rebels, Heretics));
-        pendingMatches.add("Rebels - Heretics");
-        pendingMatchesList.add(new Match(Rebels, Giants));
-        pendingMatches.add("Rebels - Giants");
-        pendingMatchesList.add(new Match(Rebels, Riders));
-        pendingMatches.add("Rebels - Riders");
-        pendingMatchesList.add(new Match(Rebels, Fnatic));
-        pendingMatches.add("Rebels - Fnatic");
-        pendingMatchesList.add(new Match(Rebels, UCAM));
-        pendingMatches.add("Rebels - UCAM");
-        pendingMatchesList.add(new Match(Rebels, Heretics));
-        pendingMatches.add("Rebels - Heretics");
-        pendingMatchesList.add(new Match(Rebels, Giants));
-        pendingMatches.add("Rebels - Giants");
-        pendingMatchesList.add(new Match(Rebels, Riders));
-        pendingMatches.add("Rebels - Riders");
-        pendingMatchesList.add(new Match(Rebels, Fnatic));
-
-        // UCAM matches
-        pendingMatchesList.add(new Match(UCAM, Heretics));
-        pendingMatches.add("UCAM - Heretics");
-        pendingMatchesList.add(new Match(UCAM, Riders));
-        pendingMatches.add("UCAM - Riders");
-        pendingMatchesList.add(new Match(UCAM, Fnatic));
-        pendingMatches.add("UCAM - Fnatic");
-        pendingMatchesList.add(new Match(UCAM, Heretics));
-        pendingMatches.add("UCAM - Heretics");
-        pendingMatchesList.add(new Match(UCAM, Giants));
-        pendingMatches.add("UCAM - Giants");
-        pendingMatchesList.add(new Match(UCAM, Riders));
-        pendingMatches.add("UCAM - Riders");
-        pendingMatchesList.add(new Match(UCAM, Fnatic));
-        pendingMatches.add("UCAM - Fnatic");
-
-        // Heretics matches
-        pendingMatchesList.add(new Match(Heretics, Giants));
-        pendingMatches.add("Heretics - Giants");
-        pendingMatchesList.add(new Match(Heretics, Fnatic));
-        pendingMatches.add("Heretics - Fnatic");
-        pendingMatchesList.add(new Match(Heretics, Giants));
-        pendingMatches.add("Heretics - Giants");
-        pendingMatchesList.add(new Match(Heretics, Riders));
-        pendingMatches.add("Heretics - Riders");
-        pendingMatchesList.add(new Match(Heretics, Fnatic));
-        pendingMatches.add("Heretics - Fnatic");
-
-        // Giants matches
-        pendingMatchesList.add(new Match(Giants, Riders));
-        pendingMatches.add("Giants - Riders");
-        pendingMatchesList.add(new Match(Giants, Riders));
-        pendingMatches.add("Giants - Riders");
-        pendingMatchesList.add(new Match(Giants, Fnatic));
-        pendingMatches.add("Giants - Fnatic");
-
-        // Riders matches
-        pendingMatchesList.add(new Match(Riders, Fnatic));
-        pendingMatches.add("Riders - Fnatic");
-        pendingMatchesList.add(new Match(Riders, Fnatic));
-        pendingMatches.add("Riders - Fnatic");
-
-        simulateMatches(teams, pendingMatches ,0, "SUPERLIGA");
-        for (int i = 0; i < teams.size(); i++) {
-            final DecimalFormat df = new DecimalFormat("00.00");
-            System.out.println(teams.get(i).name() + ": " + df.format(((double) teams.get(i).GetTop() / total) * 100) + "%");
-            System.out.println(teams.get(i));
-        }
-    }
-
-    public static void getLEC() {
-        ArrayList <Team> teams = new ArrayList<>();
-        ArrayList <String> pendingMatches = new ArrayList<>();
-        ArrayList <Match> pendingMatchesList = new ArrayList<>();
-        Team MAD = new Team("MAD Lions", 0, 0);
-        Team VIT = new Team("Vitality", 0, 0);
-        Team HER = new Team("Heretics", 0, 0);
-        Team SK = new Team("SK Gaming", 0, 0);
-        Team KOI = new Team("KOI", 0, 0);
-        Team EXC = new Team("Excel", 0, 0);
-        Team G2 = new Team("G2 Esports", 0, 0);
-        Team BDS = new Team("BDS", 0, 0);
-        Team FNC = new Team("Fnatic", 0, 0);
-        Team AST = new Team("Astralis", 0, 0);
-
-        teams.add(MAD);
-        teams.add(VIT);
-        teams.add(HER);
-        teams.add(SK);
-        teams.add(KOI);
-        teams.add(EXC);
-        teams.add(G2);
-        teams.add(BDS);
-        teams.add(FNC);
-        teams.add(AST);
-
-        // PARTIDOS KOI
-        pendingMatchesList.add(new Match(KOI, EXC));
-        pendingMatches.add("KOI - Excel");
-        pendingMatchesList.add(new Match(KOI, BDS));
-        pendingMatches.add("KOI - BDS");
-        pendingMatchesList.add(new Match(MAD, KOI));
-        pendingMatches.add("MAD Lions - KOI");
-        pendingMatchesList.add(new Match(KOI, FNC));
-        pendingMatches.add("KOI - Fnatic");
-        pendingMatchesList.add(new Match(KOI, AST));
-        pendingMatches.add("KOI - Astralis");
-        pendingMatchesList.add(new Match(KOI, VIT));
-        pendingMatches.add("KOI - Vitality");
-        pendingMatchesList.add(new Match(KOI, HER));
-        pendingMatches.add("KOI - Heretics");
-        pendingMatchesList.add(new Match(KOI, SK));
-        pendingMatches.add("KOI - SK Gaming");
-        pendingMatchesList.add(new Match(KOI, G2));
-        pendingMatches.add("KOI - G2 Esports");
-
-        // PARTIDOS MAD
-        pendingMatchesList.add(new Match(MAD, EXC));
-        pendingMatches.add("MAD Lions - Excel");
-        pendingMatchesList.add(new Match(MAD, BDS));
-        pendingMatches.add("MAD Lions - BDS");
-        pendingMatchesList.add(new Match(MAD, FNC));
-        pendingMatches.add("MAD Lions - Fnatic");
-        pendingMatchesList.add(new Match(MAD, AST));
-        pendingMatches.add("MAD Lions - Astralis");
-        pendingMatchesList.add(new Match(MAD, VIT));
-        pendingMatches.add("MAD Lions - Vitality");
-        pendingMatchesList.add(new Match(MAD, HER));
-        pendingMatches.add("MAD Lions - Heretics");
-        pendingMatchesList.add(new Match(MAD, SK));
-        pendingMatches.add("MAD Lions - SK Gaming");
-        pendingMatchesList.add(new Match(MAD, G2));
-        pendingMatches.add("MAD Lions - G2 Esports");
-
-        // PARTIDOS EXC
-        pendingMatchesList.add(new Match(EXC, BDS));
-        pendingMatches.add("Excel - BDS");
-        pendingMatchesList.add(new Match(EXC, FNC));
-        pendingMatches.add("Excel - Fnatic");
-        pendingMatchesList.add(new Match(EXC, AST));
-        pendingMatches.add("Excel - Astralis");
-        pendingMatchesList.add(new Match(EXC, VIT));
-        pendingMatches.add("Excel - Vitality");
-        pendingMatchesList.add(new Match(EXC, HER));
-        pendingMatches.add("Excel - Heretics");
-        pendingMatchesList.add(new Match(EXC, SK));
-        pendingMatches.add("Excel - SK Gaming");
-        pendingMatchesList.add(new Match(EXC, G2));
-        pendingMatches.add("Excel - G2 Esports");
-
-        // PARTIDOS BDS
-        pendingMatchesList.add(new Match(BDS, FNC));
-        pendingMatches.add("BDS - Fnatic");
-        pendingMatchesList.add(new Match(BDS, AST));
-        pendingMatches.add("BDS - Astralis");
-        pendingMatchesList.add(new Match(BDS, VIT));
-        pendingMatches.add("BDS - Vitality");
-        pendingMatchesList.add(new Match(BDS, HER));
-        pendingMatches.add("BDS - Heretics");
-        pendingMatchesList.add(new Match(BDS, SK));
-        pendingMatches.add("BDS - SK Gaming");
-        pendingMatchesList.add(new Match(BDS, G2));
-        pendingMatches.add("BDS - G2 Esports");
-
-        // PARTIDOS FNC
-        pendingMatchesList.add(new Match(FNC, AST));
-        pendingMatches.add("Fnatic - Astralis");
-        pendingMatchesList.add(new Match(FNC, VIT));
-        pendingMatches.add("Fnatic - Vitality");
-        pendingMatchesList.add(new Match(FNC, HER));
-        pendingMatches.add("Fnatic - Heretics");
-        pendingMatchesList.add(new Match(FNC, SK));
-        pendingMatches.add("Fnatic - SK Gaming");
-        pendingMatchesList.add(new Match(FNC, G2));
-        pendingMatches.add("Fnatic - G2 Esports");
-
-        // PARTIDOS AST
-        pendingMatchesList.add(new Match(AST, VIT));
-        pendingMatches.add("Astralis - Vitality");
-        pendingMatchesList.add(new Match(AST, HER));
-        pendingMatches.add("Astralis - Heretics");
-        pendingMatchesList.add(new Match(AST, SK));
-        pendingMatches.add("Astralis - SK Gaming");
-        pendingMatchesList.add(new Match(AST, G2));
-        pendingMatches.add("Astralis - G2 Esports");
-
-        // PARTIDOS VIT
-        pendingMatchesList.add(new Match(VIT, HER));
-        pendingMatches.add("Vitality - Heretics");
-        pendingMatchesList.add(new Match(VIT, SK));
-        pendingMatches.add("Vitality - SK Gaming");
-        pendingMatchesList.add(new Match(VIT, G2));
-        pendingMatches.add("Vitality - G2 Esports");
-
-        // PARTIDOS HER
-        pendingMatchesList.add(new Match(HER, SK));
-        pendingMatches.add("Heretics - SK Gaming");
-        pendingMatchesList.add(new Match(HER, G2));
-        pendingMatches.add("Heretics - G2 Esports");
-
-        // PARTIDOS SK
-        pendingMatchesList.add(new Match(SK, G2));
-        pendingMatches.add("SK Gaming - G2 Esports");
-
-        simulateMatches(teams, pendingMatches ,0, "LEC");
-        for (int i = 0; i < teams.size(); i++) {
-            final DecimalFormat df = new DecimalFormat("00.00");
-            System.out.println(teams.get(i).name() + ": " + df.format(((double) teams.get(i).GetTop() / total) * 100) + "%");
-            System.out.println(teams.get(i));
-        }
+    private static int readInt (String menu, int minNum, int maxNum) {
+        int option = 0;
+        boolean isInt = false;
+        do {
+            System.out.println(menu);
+            isInt = input.hasNextInt();
+            if (isInt) {
+                option = input.nextInt();
+                if (option < minNum || option > maxNum) {
+                    System.out.println("Opcion no valida, el numero debe estar entre " + minNum + " y " + maxNum + "");
+                    isInt = false;
+                }
+            } else {
+                System.out.println("Opcion no valida");
+                input.nextLine();
+            }
+        } while (!isInt);
+        input.nextLine();
+        return option;
     }
 }
