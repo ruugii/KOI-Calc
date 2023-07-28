@@ -104,7 +104,7 @@ public class Main {
         Team teamHeretics = new Team("Team Heretics", 0,0);
         Team koi = new Team("KOI", 0,0);
         Team karmineCorp = new Team("Karmine Corp", 0,0);
-        Team ascTeam = new Team("Ascension Team", 0,0);
+        Team M8 = new Team("Gentle Mates", 0,0);
         
         teams.add(fnatic);
         teams.add(futEsports);
@@ -116,11 +116,11 @@ public class Main {
         teams.add(koi);
         teams.add(karmineCorp);
         teams.add(bblEsports);
-        teams.add(ascTeam);
+        teams.add(M8);
         
         ArrayList<Match> pendingMatchesList = new ArrayList<>();
         // KOI matches
-        pendingMatchesList.add(new Match(koi, ascTeam));
+        pendingMatchesList.add(new Match(koi, M8));
         pendingMatchesList.add(new Match(koi, bblEsports));
         pendingMatchesList.add(new Match(koi, karmineCorp));
         pendingMatchesList.add(new Match(koi, teamHeretics));
@@ -132,15 +132,15 @@ public class Main {
         pendingMatchesList.add(new Match(koi, fnatic));
 
         // ASC matches
-        pendingMatchesList.add(new Match(ascTeam, bblEsports));
-        pendingMatchesList.add(new Match(ascTeam, karmineCorp));
-        pendingMatchesList.add(new Match(ascTeam, teamHeretics));
-        pendingMatchesList.add(new Match(ascTeam, teamVitality));
-        pendingMatchesList.add(new Match(ascTeam, futEsports));
-        pendingMatchesList.add(new Match(ascTeam, giants));
-        pendingMatchesList.add(new Match(ascTeam, teamLiquid));
-        pendingMatchesList.add(new Match(ascTeam, navi));
-        pendingMatchesList.add(new Match(ascTeam, fnatic));
+        pendingMatchesList.add(new Match(M8, bblEsports));
+        pendingMatchesList.add(new Match(M8, karmineCorp));
+        pendingMatchesList.add(new Match(M8, teamHeretics));
+        pendingMatchesList.add(new Match(M8, teamVitality));
+        pendingMatchesList.add(new Match(M8, futEsports));
+        pendingMatchesList.add(new Match(M8, giants));
+        pendingMatchesList.add(new Match(M8, teamLiquid));
+        pendingMatchesList.add(new Match(M8, navi));
+        pendingMatchesList.add(new Match(M8, fnatic));
 
         // BBL matches
         pendingMatchesList.add(new Match(bblEsports, karmineCorp));
@@ -381,70 +381,74 @@ public class Main {
 
         // JORNADA 12
         {
-
+            pendingMatchesList.add(new Match(FCB, Fnatic, "04/07/2023", "18:00", 1));
+            pendingMatchesList.add(new Match(Guasones, Heretics, "04/07/2023", "19:00", 2));
+            pendingMatchesList.add(new Match(KOI, Rebels, "04/07/2023", "20:00", 1));
+            pendingMatchesList.add(new Match(Bisons, Giants, "04/07/2023", "21:00", 2));
+            pendingMatchesList.add(new Match(UCAM, Riders, "04/07/2023", "22:00", 1));
         }
 
-        // NEXT MATCHES
-        // PENDING
-        pendingMatchesList.add(new Match(FCB, Fnatic, "04/07/2023", "18:00"));
-        pendingMatchesList.add(new Match(Guasones, Heretics, "04/07/2023", "19:00"));
-        pendingMatchesList.add(new Match(KOI, Rebels, "04/07/2023", "20:00"));
-        pendingMatchesList.add(new Match(Bisons, Giants, "04/07/2023", "21:00"));
-        pendingMatchesList.add(new Match(UCAM, Riders, "04/07/2023", "22:00"));
+        // JORNADA 13
+        {
+            pendingMatchesList.add(new Match(Guasones, Fnatic, "08/07/2023", "18:00", 1));
+            pendingMatchesList.add(new Match(FCB, UCAM, "08/07/2023", "19:00", 1));
+            pendingMatchesList.add(new Match(Rebels, Giants, "08/07/2023", "20:00", 2));
+            pendingMatchesList.add(new Match(KOI, Heretics, "08/07/2023", "21:00", 2));
+            pendingMatchesList.add(new Match(Bisons, Riders, "08/07/2023", "22:00", 1));
+        }
 
-        // KOI matches
-        pendingMatchesList.add(new Match(KOI, FCB));
-        pendingMatchesList.add(new Match(KOI, UCAM));
-        pendingMatchesList.add(new Match(KOI, Heretics));
-        pendingMatchesList.add(new Match(KOI, Giants));
-        pendingMatchesList.add(new Match(KOI, Riders));
-        pendingMatchesList.add(new Match(KOI, Fnatic));
+        // JORNADA 14
+        {
+            pendingMatchesList.add(new Match(Guasones, UCAM, "09/07/2023", "18:00", 1));
+            pendingMatchesList.add(new Match(Bisons, FCB, "09/07/2023", "19:00", 2));
+            pendingMatchesList.add(new Match(Rebels, Riders, "09/07/2023", "20:00", 2));
+            pendingMatchesList.add(new Match(KOI, Giants, "09/07/2023", "21:00", 2));
+            pendingMatchesList.add(new Match(Heretics, Fnatic, "09/07/2023", "22:00", 1));
+        }
 
-        // Bisons matches
-        pendingMatchesList.add(new Match(Bisons, Guasones));
-        pendingMatchesList.add(new Match(Bisons, FCB));
-        pendingMatchesList.add(new Match(Bisons, UCAM));
-        pendingMatchesList.add(new Match(Bisons, Heretics));
-        pendingMatchesList.add(new Match(Bisons, Riders));
-        pendingMatchesList.add(new Match(Bisons, Fnatic));
+        // JORNADA 15
+        {
+            pendingMatchesList.add(new Match(UCAM, Heretics, "11/07/2023", "18:00", 2));
+            pendingMatchesList.add(new Match(FCB, Rebels, "11/07/2023", "19:00", 1));
+            pendingMatchesList.add(new Match(Bisons, Guasones, "11/07/2023", "20:00", 1));
+            pendingMatchesList.add(new Match(Giants, Riders, "11/07/2023", "21:00", 2));
+            pendingMatchesList.add(new Match(KOI, Fnatic, "11/07/2023", "22:00", 2));
+        }
 
-        // Guasones matches
-        pendingMatchesList.add(new Match(Guasones, Rebels));
-        pendingMatchesList.add(new Match(Guasones, UCAM));
-        pendingMatchesList.add(new Match(Guasones, Giants));
-        pendingMatchesList.add(new Match(Guasones, Riders));
-        pendingMatchesList.add(new Match(Guasones, Fnatic));
+        // JORNADA 16
+        {
+            pendingMatchesList.add(new Match(UCAM, Fnatic, "13/07/2023", "18:00", 2));
+            pendingMatchesList.add(new Match(Guasones, Rebels, "13/07/2023", "19:00", 2));
+            pendingMatchesList.add(new Match(Bisons, Heretics, "13/07/2023", "20:00", 1));
+            pendingMatchesList.add(new Match(KOI, Riders, "13/07/2023", "21:00", 2));
+            pendingMatchesList.add(new Match(FCB, Giants, "13/07/2023", "22:00", 1));
+        }
 
-        // FCB matches
-        pendingMatchesList.add(new Match(FCB, Rebels));
-        pendingMatchesList.add(new Match(FCB, UCAM));
-        pendingMatchesList.add(new Match(FCB, Giants));
-        pendingMatchesList.add(new Match(FCB, Riders));
+        // JORNADA 17
+        {
+            pendingMatchesList.add(new Match(Bisons, Fnatic, "18/07/2023", "18:00", 2));
+            pendingMatchesList.add(new Match(KOI, UCAM, "18/07/2023", "19:00", 2));
+            pendingMatchesList.add(new Match(Rebels, Heretics, "18/07/2023", "20:00", 1));
+            pendingMatchesList.add(new Match(FCB, Riders, "18/07/2023", "21:00", 2));
+            pendingMatchesList.add(new Match(Guasones, Giants, "18/07/2023", "22:00", 2));
+        }
 
-        // Rebels matches
-        pendingMatchesList.add(new Match(Rebels, Heretics));
-        pendingMatchesList.add(new Match(Rebels, Giants));
-        pendingMatchesList.add(new Match(Rebels, Riders));
-        pendingMatchesList.add(new Match(Rebels, Fnatic));
-
-        // UCAM matches
-        pendingMatchesList.add(new Match(UCAM, Heretics));
-        pendingMatchesList.add(new Match(UCAM, Fnatic));
-
-        // Heretics matches
-        pendingMatchesList.add(new Match(Heretics, Giants));
-        pendingMatchesList.add(new Match(Heretics, Fnatic));
-
-        // Giants matches
-        pendingMatchesList.add(new Match(Giants, Riders));
+        // JORNADA 18
+        {
+            pendingMatchesList.add(new Match(Rebels, Fnatic, "20/07/2023", "18:00", 1));
+            pendingMatchesList.add(new Match(Bisons, UCAM, "20/07/2023", "19:00", 2));
+            pendingMatchesList.add(new Match(KOI, FCB, "20/07/2023", "20:00", 2));
+            pendingMatchesList.add(new Match(Guasones, Riders, "20/07/2023", "21:00", 2));
+            pendingMatchesList.add(new Match(Heretics, Giants, "20/07/2023", "22:00", 1));
+        }
 
         Competition SL = new Competition("SUPERLIGA", teams, pendingMatchesList);
         int option = 0;
-        final String menu = "Que quieres hacer?\n\t1.- Simular partidos\n\t2.- Ver todos los partidos\n\t3.- Ver partidos pendientes\n\t4.- Ver Resultados\n\t5.- Ver clasificacion\n\t6.- Salir";
         do {
-            option = readInt(menu, 1, 6);
+            option = 1;
             switch (option) {
                 case 1:
+                option = 6;
                     simulateMatches(SL.getTeams(), SL.getPendingMatchesToString(), 0, SL.getName());
                     for (int i = 0; i < teams.size(); i++) {
                         final DecimalFormat df = new DecimalFormat("00.00");
@@ -569,77 +573,29 @@ public class Main {
         pendingMatchesList.add(new Match(FNC, VIT, "26/06/2023", "22:00", 1));
 
         // JORNADA 7
-        pendingMatchesList.add(new Match(AST, SK, "01/07/2023", "18:00"));
-        pendingMatchesList.add(new Match(KOI, VIT, "01/07/2023", "19:00"));
-        pendingMatchesList.add(new Match(EXC, G2, "01/07/2023", "20:00"));
-        pendingMatchesList.add(new Match(BDS, FNC, "01/07/2023", "21:00"));
-        pendingMatchesList.add(new Match(MAD, HER, "01/07/2023", "22:00"));
+        pendingMatchesList.add(new Match(AST, SK, "01/07/2023", "18:00", 1));
+        pendingMatchesList.add(new Match(KOI, VIT, "01/07/2023", "19:00", 1));
+        pendingMatchesList.add(new Match(EXC, G2, "01/07/2023", "20:00", 2));
+        pendingMatchesList.add(new Match(BDS, FNC, "01/07/2023", "21:00", 2));
+        pendingMatchesList.add(new Match(MAD, HER, "01/07/2023", "22:00", 2));
 
-        // PARTIDOS KOI
-        pendingMatchesList.add(new Match(KOI, AST));
-        pendingMatchesList.add(new Match(KOI, G2));
-        
-        // PARTIDOS MAD
-        pendingMatchesList.add(new Match(MAD, BDS));
-        pendingMatchesList.add(new Match(MAD, SK));
-        
-        // PARTIDOS EXC
-        pendingMatchesList.add(new Match(EXC, AST));
-        pendingMatchesList.add(new Match(EXC, VIT));
+        // JORNADA 8
+        pendingMatchesList.add(new Match(EXC, AST, "02/07/2023", "18:00", 1));
+        pendingMatchesList.add(new Match(KOI, G2, "02/07/2023", "19:00", 2));
+        pendingMatchesList.add(new Match(FNC, HER, "02/07/2023", "20:00", 1));
+        pendingMatchesList.add(new Match(BDS, VIT, "02/07/2023", "21:00", 1));
+        pendingMatchesList.add(new Match(MAD, SK, "02/07/2023", "22:00", 2));
 
-        // PARTIDOS BDS
-        pendingMatchesList.add(new Match(BDS, VIT));
-
-
-        // PARTIDOS FNC
-        pendingMatchesList.add(new Match(FNC, HER));
-        pendingMatchesList.add(new Match(FNC, SK));
-
-        // PARTIDOS HER
-        pendingMatchesList.add(new Match(HER, G2));
+        // JORNADA 9
+        pendingMatchesList.add(new Match(EXC, VIT, "03/07/2023", "18:00", 1));
+        pendingMatchesList.add(new Match(BDS, MAD, "03/07/2023", "19:00", 1));
+        pendingMatchesList.add(new Match(KOI, AST, "03/07/2023", "20:00", 1));
+        pendingMatchesList.add(new Match(HER, G2, "03/07/2023", "21:00", 2));
+        pendingMatchesList.add(new Match(FNC, SK, "03/07/2023", "22:00", 2));
 
         Competition LEC = new Competition("LEC", teams, pendingMatchesList);
-        int option = 0;
-
-        do {
-            System.out.println("Que quieres hacer?\n\t1.- Simular partidos\n\t2.- Ver todos los partidos\n\t3.- Ver partidos pendientes\n\t4.- Ver Resultados\n\t5.- Ver clasificacion\n\t6.- Salir");
-            boolean isInt = input.hasNextInt();
-
-            if (isInt) {
-                option = input.nextInt();
-            } else {
-                option = 0;
-            }
-
-            switch (option) {
-                case 1:
-                    simulateMatches(teams, LEC.getPendingMatchesToString() ,0, "LEC");
-                    for (int i = 0; i < teams.size(); i++) {
-                        final DecimalFormat df = new DecimalFormat("00.00");
-                        System.out.println(teams.get(i).name() + ": " + df.format(((double) teams.get(i).GetTop() / total) * 100) + "%");
-                        System.out.println(teams.get(i));
-                    }
-                    break;
-                case 2:
-                    LEC.seeMatches();
-                    break;
-                case 3:
-                    LEC.seePendingMatches();
-                    break;
-                case 4:
-                    LEC.seeResults();
-                    break;
-                case 5:
-                    LEC.classification();
-                    break;
-                case 6:
-                    System.out.println("saliendo...");
-                    break;
-                default:
-                    System.out.println("opcion no valida");
-                    break;
-            }
-        } while (option != 6);
+        
+        LEC.classification();
     }
 
     private static void simulateMatches(ArrayList<Team> teams, ArrayList<String> pendingMatches, int currentMatch, String comp) {

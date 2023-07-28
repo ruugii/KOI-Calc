@@ -115,12 +115,10 @@ public class Competition {
         for (int i = 0; i < this.matches.size(); i++) {
             if (this.matches.get(i).compareTeams(team1, team2)) {
                 if (this.matches.get(i).getWinner() == team1) {
-                    System.out.println("Desempate: " + team1.name() + " vs " + team2.name() + " | " + this.matches.get(i).toString());
                     int team1Diference = team1.wins() - team1.losses();
                     int team2Diference = team2.wins() - team2.losses();
                     return team2Diference - (team1Diference + 1);
                 } else if (this.matches.get(i).getWinner() == team2) {
-                    System.out.println("Desempate: " + team1.name() + " vs " + team2.name() + " | " + this.matches.get(i).toString());
                     int team1Diference = team1.wins() - team1.losses();
                     int team2Diference = team2.wins() - team2.losses();
                     return (team2Diference + 1) - team1Diference;
